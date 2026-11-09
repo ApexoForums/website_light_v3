@@ -1,0 +1,342 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   APEXO FORUMS — Premium Animation CSS v2
+   Razorpay-quality: smooth, purposeful, paper-cream base
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── 1. SCROLL REVEAL BASE ──────────────────────────────────────────────── */
+.rv, .rv-s, .rv-l {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1);
+  will-change: opacity, transform;
+}
+.rv-s {
+  transform: translateY(18px) scale(.98);
+}
+.rv-l {
+  transform: translateY(44px);
+  transition-duration: .9s;
+}
+.rv.on, .rv-s.on, .rv-l.on {
+  opacity: 1;
+  transform: none;
+}
+/* Stagger delays */
+.d1 { transition-delay: .08s; }
+.d2 { transition-delay: .16s; }
+.d3 { transition-delay: .24s; }
+.d4 { transition-delay: .32s; }
+.d5 { transition-delay: .40s; }
+
+/* Gold bar grow-in */
+.wipe, .lgrow {
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: transform .9s cubic-bezier(.16,1,.3,1);
+}
+.wipe.on, .lgrow.on {
+  transform: scaleX(1);
+}
+
+/* Stat number */
+.stat-n {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity .6s ease, transform .6s cubic-bezier(.16,1,.3,1);
+}
+.stat-n.on {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── 2. HERO GRADIENT MESH ORBS ─────────────────────────────────────────── */
+.hero-mesh {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.18;
+  animation: orbFloat 12s ease-in-out infinite;
+}
+.hero-orb-1 {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, #c9a84c 0%, transparent 70%);
+  top: -100px; left: -50px;
+  animation-duration: 14s;
+}
+.hero-orb-2 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, #4a7cdc 0%, transparent 70%);
+  top: 40%; right: 10%;
+  animation-duration: 10s;
+  animation-delay: -4s;
+  opacity: 0.1;
+}
+.hero-orb-3 {
+  width: 350px; height: 350px;
+  background: radial-gradient(circle, #b8922a 0%, transparent 70%);
+  bottom: -50px; right: 30%;
+  animation-duration: 16s;
+  animation-delay: -8s;
+  opacity: 0.12;
+}
+@keyframes orbFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(30px, -40px) scale(1.05); }
+  66%       { transform: translate(-20px, 20px) scale(0.95); }
+}
+
+/* ── 3. HERO TITLE ANIMATION ─────────────────────────────────────────────── */
+@keyframes heroTitleIn {
+  from { opacity: 0; transform: translateY(32px); clip-path: inset(100% 0 0 0); }
+  to   { opacity: 1; transform: translateY(0);    clip-path: inset(0); }
+}
+@keyframes heroSpanIn {
+  from { opacity: 0; transform: translateY(16px) skewX(-4deg); }
+  to   { opacity: 1; transform: translateY(0)   skewX(0deg); }
+}
+.hero-title-animated {
+  animation: heroTitleIn .95s cubic-bezier(.16,1,.3,1) .15s both;
+}
+
+/* ── 4. SHIMMER BUTTON EFFECT ───────────────────────────────────────────── */
+.shimmer-btn {
+  position: relative;
+  overflow: hidden;
+}
+.shimmer-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg,
+    transparent 40%,
+    rgba(255,255,255,.18) 50%,
+    transparent 60%
+  );
+  transform: translateX(-100%);
+  transition: transform 0s;
+}
+.shimmer-btn:hover::after {
+  transform: translateX(200%);
+  transition: transform .6s cubic-bezier(.4,0,.2,1);
+}
+
+/* ── 5. CURSOR SPOTLIGHT ────────────────────────────────────────────────── */
+.cursor-spotlight {
+  position: fixed;
+  top: 0; left: 0;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(201,168,76,.06) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 9999;
+  border-radius: 50%;
+  mix-blend-mode: normal;
+  transition: none;
+}
+
+/* ── 6. PAGE TRANSITION ─────────────────────────────────────────────────── */
+.page {
+  transition: opacity .3s cubic-bezier(.16,1,.3,1), transform .4s cubic-bezier(.16,1,.3,1);
+  will-change: opacity, transform;
+}
+
+/* ── 7. CARD HOVER POLISH ───────────────────────────────────────────────── */
+.gc {
+  transition: transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s ease;
+  transform-style: preserve-3d;
+  cursor: default;
+}
+.gc:hover {
+  box-shadow: 0 12px 40px rgba(32,30,29,.1);
+}
+
+.ind-teaser-card {
+  transition: transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s ease;
+  transform-style: preserve-3d;
+}
+.ind-teaser-card:hover {
+  box-shadow: 0 20px 50px rgba(0,0,0,.35);
+}
+
+/* ── 8. BUTTON HOVER (replace onmouseenter inline handlers) ─────────────── */
+.btn-dark {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-text);
+  color: var(--paper);
+  font-size: 11px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 14px 32px;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform .2s cubic-bezier(.16,1,.3,1), box-shadow .2s ease, background .2s ease;
+  position: relative;
+  overflow: hidden;
+}
+.btn-dark:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(32,30,29,.25);
+  background: #2a2018;
+}
+.btn-dark:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #e3c78c 0%, #bd9143 50%, #8a5210 100%);
+  color: #fff;
+  font-size: 11px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 14px 32px;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform .2s cubic-bezier(.16,1,.3,1), box-shadow .2s ease, filter .2s ease;
+}
+.btn-gold:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+  box-shadow: 0 8px 24px rgba(189,145,67,.4);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--color-text);
+  font-size: 11px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 12px 28px;
+  border: 1.5px solid rgba(32,30,29,.25);
+  border-radius: 999px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color .2s ease, background .2s ease, transform .2s cubic-bezier(.16,1,.3,1);
+}
+.btn-ghost:hover {
+  border-color: var(--color-text);
+  background: rgba(32,30,29,.04);
+  transform: translateY(-1px);
+}
+
+/* ── 9. NAV CTA button ─────────────────────────────────────────────────── */
+.nav-cta {
+  transition: transform .2s cubic-bezier(.16,1,.3,1), box-shadow .2s ease, filter .2s ease;
+}
+.nav-cta:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.08);
+  box-shadow: 0 4px 16px rgba(189,145,67,.35);
+}
+
+/* ── 10. EYEBROW LABEL ANIMATE IN ──────────────────────────────────────── */
+.eyebrow-anim {
+  position: relative;
+  overflow: hidden;
+}
+.eyebrow-anim::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  height: 1px;
+  width: 0;
+  background: var(--gold);
+  transition: width .6s cubic-bezier(.16,1,.3,1) .4s;
+}
+.rv.on .eyebrow-anim::before,
+.eyebrow-anim.on::before {
+  width: 100%;
+}
+
+/* ── 11. SECTION BACKGROUND SUBTLE PATTERN ─────────────────────────────── */
+.section {
+  position: relative;
+}
+
+/* ── 12. GOLD BAR animate on load ──────────────────────────────────────── */
+.gold-bar {
+  display: block;
+  height: 3px;
+  width: 60px;
+  background: var(--gold);
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform .8s cubic-bezier(.16,1,.3,1) .3s;
+}
+.gold-bar.on { transform: scaleX(1); }
+
+/* ── 13. RAZORPAY-STYLE SECTION FADE ───────────────────────────────────── */
+[data-rzp] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .65s cubic-bezier(.16,1,.3,1), transform .65s cubic-bezier(.16,1,.3,1);
+  will-change: opacity, transform;
+}
+[data-rzp].rzp-on {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── 14. FOOTER LINK HOVER ─────────────────────────────────────────────── */
+footer a {
+  transition: opacity .2s ease, color .2s ease;
+}
+footer a:hover {
+  opacity: 1 !important;
+  color: var(--gold);
+}
+
+/* ── 15. INLINE HOVER HANDLER OVERRIDES  ───────────────────────────────── */
+/* Replace all onmouseenter/leave on CTA buttons */
+a[style*="display:inline-flex"][style*="border-radius:999px"] {
+  transition: transform .2s cubic-bezier(.16,1,.3,1), filter .2s ease, box-shadow .2s ease !important;
+}
+a[style*="display:inline-flex"][style*="border-radius:999px"]:hover {
+  transform: translateY(-2px) !important;
+  filter: brightness(1.1) !important;
+}
+
+/* ── 16. MOBILE PERFORMANCE ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .hero-mesh { display: none; }  /* skip orbs on mobile */
+  .cursor-spotlight { display: none; }
+  [data-rzp], .rv, .rv-s, .rv-l {
+    transition-duration: .5s !important;
+  }
+}
+
+/* ── 17. REDUCED MOTION RESPECT ─────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .hero-orb { animation: none; }
+  .cursor-spotlight { display: none; }
+  [data-rzp], .rv, .rv-s, .rv-l {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .wipe, .lgrow, .gold-bar {
+    transform: scaleX(1) !important;
+    transition: none !important;
+  }
+}
